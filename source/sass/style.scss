@@ -1,0 +1,19 @@
+/* GLOBAL */
+@import "global/fonts";
+@import "global/viewports";
+@import "global/mixins";
+@import "global/colors";
+@import "global/buttons";
+@import "global/variables";
+@import "global/global";
+
+/* BLOCKS */
+@import "blocks/header";
+@import "blocks/slider";
+@import "blocks/advantages";
+@import "blocks/catalog";
+@import "blocks/form";
+@import "blocks/form-disabled";
+@import "blocks/paginations";
+@import "blocks/map";
+@import "blocks/footer";
