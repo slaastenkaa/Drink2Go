@@ -47,3 +47,10 @@
   background-color: $gray;
   cursor: no-drop;
 }
+
+
+.checkbox__span-disabled-cheked:hover::before,
+.checkbox__input:checked.checkbox__input:disabled + .checkbox__span:hover::before,
+.checkbox__input:disabled + .checkbox__span:hover::before {
+  border: 2px solid $light-gray;
+}

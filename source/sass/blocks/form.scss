@@ -40,16 +40,31 @@
   width: 100%;
   height: 4px;
   background-color: $light-gray;
+  border: none;
+  box-shadow: none;
 }
 
-.range__bar {
+.range__bar .range__toggle {
+  display: none;
+}
+
+.range__nojs .range__bar,
+.noUi-connect {
+  display: block;
   position: absolute;
   width: 93%;
   height: 4px;
   background-color: $primary-lighter;
 }
 
-.range__toggle {
+.noUi-connect {
+  width: 100%;
+}
+
+.range__nojs .range__toggle,
+.noUi-handle.noUi-handle-lower,
+.noUi-handle.noUi-handle-upper {
+  display: block;
   position: absolute;
   top: -9px;
   width: 24px;
@@ -59,7 +74,14 @@
   border: 2px solid $primary-lighter;
 }
 
-.range__toggle::after {
+.noUi-handle.noUi-handle-lower,
+.noUi-handle.noUi-handle-upper {
+  top: -11px;
+}
+
+.range__toggle::after,
+.noUi-handle::before,
+.noUi-handle::after {
   content: "";
   position: absolute;
   top: -2px;
@@ -82,8 +104,22 @@
   background-color: $primary-opacity;
 }
 
+.noUi-handle:hover::before,
+.noUi-handle:hover::after,
+.noUi-handle:focus::before,
+.noUi-handle:focus::after {
+  transform: scale(0.75) translate(-1px, 0);
+  background-color: $primary-opacity;
+}
+
 .range__toggle:active::after {
   transform: scale(0.75) translate(0, 1px);
+  background-color: $primary;
+}
+
+.noUi-handle:active::before,
+.noUi-handle:active::after {
+  transform: scale(0.75) translate(-1px, 0);
   background-color: $primary;
 }
 
@@ -274,10 +310,14 @@
   margin-bottom: 20px;
 }
 
+.select-nojs .select__control {
+  display: flex;
+}
+
 .select__control {
+  display: none;
   margin: 0;
-  padding: 0;
-  padding-right: 23px;
+  padding: 3px 30px 3px 10px;
   font-family: inherit;
   font-weight: 600;
   font-size: 16px;
@@ -290,14 +330,121 @@
   background-color: transparent;
   background-image: url("../../img/icons-arrow.svg");
   background-repeat: no-repeat;
-  background-position: right 7px center;
+  background-position: right 10px center;
   cursor: pointer;
 }
 
+.select__control-title {
+  position: relative;
+  margin: 0;
+  padding: 3px 30px 3px 10px;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: right;
+  color: $primary;
+  border: none;
+  outline: none;
+  appearance: none;
+  background-color: transparent;
+  transition: all 0.5s ease-out;
+  cursor: pointer;
+}
+
+.select__control-title::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 25px;
+  background-image: url("../../img/icons-arrow.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
 .select__control:hover,
-.select__control:focus {
+.select__control:focus,
+.select__control-title:hover,
+.select__control-title:focus {
   background-color: $secondary;
   border-radius: 4px;
+}
+
+.select__control-div {
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+
+.select__control-div[data-state="active"] {
+  .select__control-content {
+    display: flex;
+  }
+
+  .select__control-title:active::after {
+    transform: rotate(180deg);
+  }
+
+  .select__control-input + .select__control-label {
+    min-height: 40px;
+  }
+}
+
+.select__control-content {
+  position: absolute;
+  top: 32px;
+  right: 0;
+  display: none;
+  flex-direction: column;
+  width: 120%;
+  height: auto;
+  transition: all 0.3s ease-out;
+  background-color: $white;
+  border-radius: 4px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  opacity: 1;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.select__control-input {
+  display: none;
+
+  &:checked + .select__control-label {
+    display: none;
+  }
+
+  &:disabled + .select__control-label {
+    opacity: 0.6;
+    pointer-events: none;
+  }
+}
+
+.select__control-label {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 40px;
+  max-height: 0;
+  padding: 8px 20px;
+  overflow: hidden;
+  font-family: inherit;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: $black;
+  border-top: 2px solid $secondary;
+  transition: all 0.2s ease-out;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $secondary;
+  }
+
+  &:active {
+    color: $white;
+    background-color: $primary;
+  }
 }
 
 @media (min-width: $tablet-width) {
@@ -368,10 +515,6 @@
   .select__control {
     margin-right: 4px;
     padding: 0 28px 0 0;
-  }
-
-  .form__fieldset-legend-select {
-    transform: translate(6px, 0);
   }
 }
 

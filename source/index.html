@@ -13,6 +13,7 @@
   <link rel="preload" href="./fonts/Montserrat-Medium.woff2" type="font/woff2" as="font" crossorigin="anonymous">
   <link rel="preload" href="./fonts/Montserrat-Bold.woff2" type="font/woff2" as="font" crossorigin="anonymous">
   <link rel="stylesheet" href="./vendor/leaflet/leaflet.css">
+  <link rel="stylesheet" href="./vendor/nouislider/nouislider.min.css">
   <link rel="stylesheet" href="./vendor/swiper/swiper-bundle.min.css">
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -32,16 +33,16 @@
         </a>
         <ul class="navigation__list navigation-site list">
           <li class="navigation__item current-link">
-            <a class="navigation__link link" href="#">Главная</a>
+            <a class="navigation__link link" href="#slide">Главная</a>
           </li>
           <li class="navigation__item">
-            <a class="navigation__link link" href="#">Каталог</a>
+            <a class="navigation__link link" href="#catalog">Каталог</a>
           </li>
           <li class="navigation__item">
-            <a class="navigation__link link" href="#">Доставка</a>
+            <a class="navigation__link link" href="#maps">Доставка</a>
           </li>
           <li class="navigation__item navigation__item-last">
-            <a class="navigation__link link" href="#">О нас</a>
+            <a class="navigation__link link" href="#advantages">О нас</a>
           </li>
         </ul>
         <ul class="navigation__list navigation-users list">
@@ -72,7 +73,7 @@
   </header>
   <main class="main">
     <h1 class="visually-hidden">Интерент-магазин «Drink2Go»</h1>
-    <section class="slider swiper">
+    <section class="slider swiper" id="slide">
       <div class="swiper-wrapper slider__wrapper">
         <div class="swiper-slide slide slide-white">
           <div class="container slide-container">
@@ -142,7 +143,7 @@
         </div>
       </div>
     </section>
-    <section class="advantages">
+    <section class="advantages" id="advantages">
       <div class="container">
         <span class="advantages__span span-info">Преимущества</span>
         <h2 class="advantages__title">Главные причины выбрать Drink2Go</h2>
@@ -182,7 +183,7 @@
         </ul>
       </div>
     </section>
-    <section class="catalog">
+    <section class="catalog" id="catalog">
       <div class="container">
         <span class="catalog__span span-info">Каталог</span>
         <h2 class="catalog__title">Каталог кофейных напитков</h2>
@@ -192,7 +193,7 @@
               <fieldset class="form__fieldset form__fieldset-range range">
                 <legend class="form__fieldset-legend form__fieldset-legend-range">Цена</legend>
                 <div class="range__wrapper">
-                    <div class="range__scale">
+                    <div class="range__scale range__nojs" id="range">
                       <div class="range__bar">
                         <button class="range__toggle toggle-min" type="button">
                           <span class="visually-hidden">Изменить минимальную цену.</span>
@@ -230,7 +231,7 @@
                   </li>
                   <li class="radio__item">
                     <input class="visually-hidden radio__input" type="radio" id="without" name="type" value="Без молока" disabled>
-                    <label class="radio__label radio__label-disabled" for="without">Без молока</label>
+                    <label class="radio__label" for="without">Без молока</label>
                   </li>
                 </ul>
               </fieldset>
@@ -264,7 +265,7 @@
                     <li class="checkbox__item">
                       <label class="checkbox__label">
                         <input class="visually-hidden checkbox__input" type="checkbox" name="country" value="Перу" disabled>
-                        <span class="checkbox__span checkbox__span-disabled">Перу</span>
+                        <span class="checkbox__span">Перу</span>
                       </label>
                     </li>
                   </ul>
@@ -277,7 +278,7 @@
           </div>
           <div class="catalog__wrapper">
             <form class="catalog__wrapper-form form" action="https://echo.htmlacademy.ru/" method="get">
-              <fieldset class="form__fieldset form__fieldset-select select">
+              <fieldset class="form__fieldset form__fieldset-select select select-nojs">
                 <legend class="visually-hidden">Сортировка</legend>
                 <h3 class="form__fieldset-legend form__fieldset-legend-select">Сортировка:</h3>
                 <select class="form__fieldset-select select__control" aria-label="Сортировка">
@@ -286,6 +287,19 @@
                   <option value="cheap">сначала дешёвые</option>
                   <option value="popular">высокий рейтинг</option>
                 </select>
+                <div class="form__fieldset-select select__control-div" data-state="">
+                  <div class="select__control-title" data-default="Option 0">по умолчанию</div>
+                  <div class="select__control-content">
+                    <input id="defaultSelect" class="select__control-input" type="radio" name="sortSelect" checked>
+                    <label for="defaultSelect" class="select__control-label">по умолчанию</label>
+                    <input id="expensiveSelect" class="select__control-input" type="radio" name="sortSelect">
+                    <label for="expensiveSelect" class="select__control-label">сначала дорогие</label>
+                    <input id="cheapSelect" class="select__control-input" type="radio" name="sortSelect">
+                    <label for="cheapSelect" class="select__control-label">сначала дешёвые</label>
+                    <input id="popularSelect" class="select__control-input" type="radio" name="sortSelect">
+                    <label for="popularSelect" class="select__control-label">высокий рейтинг</label>
+                  </div>
+                </div>
               </fieldset>
             </form>
             <ul class="catalog__list list">
@@ -315,11 +329,10 @@
                   <source media="(min-width: 768px)" srcset="./img/coffee-purple__tablet.png, ./img/coffee-purple__tablet@2x.png 2x">
                   <img class="catalog__item-image" src="./img/coffee-purple__mobil.png" loading="lazy" srcset="./img/coffee-purple__mobil@2x.png 2x" width="130" height="188" alt="Изображение кофе Декаф Флэт Уайт.">
                 </picture>
-                <h3 class="catalog__item-title">Декаф Флэт Уайт</h3>
-                <p class="catalog__item-text">Кофе без кофеина из Эфиопии
-                  с&nbsp;натуральным фермерским молоком</p>
+                <h3 class="catalog__item-title">Лавандовый Латте</h3>
+                <p class="catalog__item-text">Невероятное сочетание перуанской высокогорной арабики с молоком ламы и лавандовым сиропом унесёт вас прямо на вершину Радужных гор</p>
                 <div class="catalog__item-order">
-                  <p class="catalog__item-order-price">225₽</p>
+                  <p class="catalog__item-order-price">265₽</p>
                   <button class="catalog__item-order-button button" type="button">
                     <svg class="button__order-icon" aria-label="Добавить в корзину" width="20" height="16"
                       aria-hidden="true" focusable="false" fill="currentColor">
@@ -335,11 +348,10 @@
                   <source media="(min-width: 768px)" srcset="./img/coffee-black__tablet.png, ./img/coffee-black__tablet@2x.png 2x">
                   <img class="catalog__item-image" src="./img/coffee-black__mobil.png" loading="lazy" srcset="./img/coffee-black__mobil@2x.png 2x" width="130" height="188" alt="Изображение кофе Декаф Флэт Уайт.">
                 </picture>
-                <h3 class="catalog__item-title">Декаф Флэт Уайт</h3>
-                <p class="catalog__item-text">Кофе без кофеина из Эфиопии
-                  с&nbsp;натуральным фермерским молоком</p>
+                <h3 class="catalog__item-title">Тройной Эспрессо</h3>
+                <p class="catalog__item-text">Тройной эспрессо из Колумбии покажет, что такое настоящая бодрость</p>
                 <div class="catalog__item-order">
-                  <p class="catalog__item-order-price">225₽</p>
+                  <p class="catalog__item-order-price">375₽</p>
                   <button class="catalog__item-order-button button" type="button">
                     <svg class="button__order-icon" aria-label="Добавить в корзину" width="20" height="16"
                       aria-hidden="true" focusable="false" fill="currentColor">
@@ -445,7 +457,7 @@
         </div>
       </div>
     </section>
-    <section class="map map-nojs">
+    <section class="map map-nojs" id="maps">
       <h2 class="visually-hidden">Как до нас добраться.</h2>
       <div class="map__container" id="map"></div>
       <picture class="map__picture">
@@ -496,16 +508,16 @@
           <h3 class="footer__column-title">Интернет-магазин</h3>
           <ul class="footer__column-list list">
             <li class="footer__column-item">
-              <a class="footer__column-link link" href="#">Каталог</a>
+              <a class="footer__column-link link" href="#catalog">Каталог</a>
             </li>
             <li class="footer__column-item">
-              <a class="footer__column-link link" href="#">Доставка</a>
+              <a class="footer__column-link link" href="#maps">Доставка</a>
             </li>
             <li class="footer__column-item">
               <a class="footer__column-link link" href="#">Способы оплаты</a>
             </li>
             <li class="footer__column-item">
-              <a class="footer__column-link link" href="#">О нас</a>
+              <a class="footer__column-link link" href="#advantages">О нас</a>
             </li>
           </ul>
         </div>
@@ -554,6 +566,7 @@
       </div>
   </footer>
   <script src="./vendor/leaflet/leaflet.js"></script>
+  <script src="./vendor/nouislider/nouislider.min.js"></script>
   <script src="./vendor/swiper/swiper-bundle.min.js"></script>
   <script src="./js/script.js" type="module"></script>
 </body>

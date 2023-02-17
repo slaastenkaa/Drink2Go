@@ -33,17 +33,23 @@
   padding: 39px 17px 19px;
   background: $white;
   border-radius: 4px;
-}
-
-.catalog__item:hover,
-.catalog__item:focus {
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+  transition: all 0.5s ease-out;
 }
 
 .catalog__item-image {
   display: flex;
   margin: auto;
   margin-bottom: 6px;
+  transition: all 0.5s ease-out;
+}
+
+.catalog__item:hover,
+.catalog__item:focus {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+
+  .catalog__item-image {
+    transform: scale(1.05);
+  }
 }
 
 .catalog__item-title {

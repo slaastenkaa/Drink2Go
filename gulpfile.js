@@ -125,6 +125,16 @@ export function leafletCSS() {
   .pipe(gulp.dest('build/vendor/leaflet'));
 }
 
+export function nouisliderJS() {
+  return gulp.src('node_modules/nouislider/dist/nouislider.min.js')
+  .pipe(gulp.dest('build/vendor/nouislider'));
+}
+
+export function nouisliderCSS() {
+  return gulp.src('node_modules/nouislider/dist/nouislider.min.css')
+  .pipe(gulp.dest('build/vendor/nouislider'));
+}
+
 function reloadServer (done) {
   browser.reload();
   done();
@@ -149,7 +159,9 @@ function compileProject (done) {
     swiperJS,
     swiperCSS,
     leafletJS,
-    leafletCSS
+    leafletCSS,
+    nouisliderJS,
+    nouisliderCSS
   )(done);
 }
 
