@@ -1,4 +1,5 @@
 const slider = document.querySelector('.range__scale');
+const buttonReset = document.querySelector('.form__fieldset-button-reset');
 const valueElementMax = document.querySelector('.range__input-max');
 const valueElementMin = document.querySelector('.range__input-min');
 const valueElement = [
@@ -37,4 +38,8 @@ valueElement.forEach(function (input, handle) {
   input.addEventListener('change', function () {
     slider.noUiSlider.setHandle(handle, this.value);
   });
+});
+
+buttonReset.addEventListener('click', function () {
+  slider.noUiSlider.reset();
 });

@@ -314,6 +314,10 @@
   display: flex;
 }
 
+.select-nojs .select__control-div {
+  display: none;
+}
+
 .select__control {
   display: none;
   margin: 0;
@@ -371,6 +375,7 @@
 }
 
 .select__control-div {
+  display: flex;
   position: relative;
   margin: 0;
   padding: 0;
@@ -495,6 +500,7 @@
     grid-column: 1/-1;
     transform: translate(-27px, 0);
     gap: 32px;
+    flex-wrap: wrap;
   }
 
   .form__fieldset-checkbox {
